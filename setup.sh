@@ -14,4 +14,16 @@ for b in PLAN.md LOG.md VERIFY.md NOTES.md; do
   if [ ! -f "$src" ]; then echo "$b 템플릿을 못 찾음"; continue; fi
   if [ -e "docs/$b" ]; then echo "docs/$b 이미 있음, 건너뜀"; else cp "$src" "docs/$b"; echo "docs/$b 생성"; fi
 done
+# Codex 스킬: skill-이름.md (또는 skills/이름/SKILL.md) -> .agents/skills/이름/SKILL.md
+n=0
+for f in "$KIT"/skill-*.md "$KIT"/skills/*/SKILL.md; do
+  [ -f "$f" ] || continue
+  case "$f" in
+    */SKILL.md) name="$(basename "$(dirname "$f")")" ;;
+    *) name="$(basename "$f" .md)"; name="${name#skill-}" ;;
+  esac
+  if [ -e ".agents/skills/$name/SKILL.md" ]; then echo "스킬 $name 이미 있음, 건너뜀"; continue; fi
+  mkdir -p ".agents/skills/$name" && cp "$f" ".agents/skills/$name/SKILL.md" && n=$((n+1))
+done
+if [ "$n" -gt 0 ]; then echo "Codex 스킬 ${n}개 설치 (.agents/skills). codex는 이 다음에 켜야 인식해요"; fi
 echo "지시문 모음: cat $KIT/PROMPTS.md"
