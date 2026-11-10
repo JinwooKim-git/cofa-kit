@@ -14,6 +14,7 @@
 ## 남은 6:28 (09:32) [2번 탭] 시작 명령 (한 줄씩 입력 후 Enter)
 pwd; ls -a  
 python3 -c "import importlib.util as u; print({m: bool(u.find_spec(m)) for m in ('numpy','pandas','scipy','ortools','sklearn','flask')})"  
+→ 위 python3 줄은 건너뛰어도 됨 ($kickoff가 대신 확인)  
 git clone https://github.com/JinwooKim-git/cofa-kit /tmp/cofa-kit  
 bash /tmp/cofa-kit/setup.sh  
 → ls에 과제 README가 안 보이면 cd로 과제 폴더로 간 다음 setup  
@@ -29,7 +30,7 @@ bash /tmp/cofa-kit/setup.sh
 - 스킬이 안 보이면: "$opt" 대신 ".agents/skills/opt/SKILL.md를 읽고 그대로 해줘"  
 - 승인 창: 무슨 명령인지 읽고 승인. 계속 쓸 명령은 "p"로 승인  
 - Codex 권한·설정 파일(config.toml)은 바꾸지 않기  
-- 2번 탭 라이브러리 확인 결과를 1번 탭 첫 문장에 같이 알려 주기  
+- 2번 탭 라이브러리 확인을 했으면 결과를 1번 탭 첫 문장에 같이 알려 주기  
 
 ## 순서대로 보낼 문장 (짧은 버전 = 스킬 / 긴 버전 = 스킬이 없을 때)
 모든 지시 끝에 "완료 조건: (무엇이 보이면 끝)"을 붙이면 Codex가 덜 헤맨다.  
@@ -38,7 +39,8 @@ bash /tmp/cofa-kit/setup.sh
 짧게: $kickoff 시작 09:30, 점심 12:00-13:00, 과제 마감 16:00 (화면 안내 시각으로 고쳐 쓰기)  
 길게: AGENTS.md를 읽고 그 규칙대로 일해줘. README.md와 데이터 파일을 읽고, 코드는 쓰지 말고 ① 목표 ② 제출물·실행 방식(Docker 여부) ③ 요구 문서 ④ 제약 ⑤ 데이터별 내용·빠진 값 ⑥ 과제 유형(최적화/분석/서비스/검색·질의응답/기존 코드 수정)과 핵심 계산, 앱에서 쓸 수 있는 LLM·API ⑦ 담당자 질문 5개(담당자가 없으면 가정 목록)를 표로 정리해줘.  
 → 배치·배정·일정·경로 계산이면 이어서: $opt  
-→ FAB 현장 데이터(수율·불량·설비·PM·반송)면: $fab  
+→ FAB 현장 데이터(수율·불량·설비·PM·반송)면 이어서:  
+$fab 이 데이터 기준으로 kickoff 질문을 현장 말로 다듬어서 5개로 줄여 주고, 데이터 함정은 실제 파일에서 확인해줘  
 
 2) 남은 6:15-5:45 (09:45-10:15) 기준 정하기  
 A. 담당자 있음 — 한 번에 하나씩, 점점 깊게  
