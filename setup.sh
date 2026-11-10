@@ -26,4 +26,4 @@ for f in "$KIT"/skill-*.md "$KIT"/skills/*/SKILL.md; do
   mkdir -p ".agents/skills/$name" && cp "$f" ".agents/skills/$name/SKILL.md" && n=$((n+1))
 done
 if [ "$n" -gt 0 ]; then echo "Codex 스킬 ${n}개 설치 (.agents/skills). codex는 이 다음에 켜야 인식해요"; fi
-echo "지시문 모음: 왼쪽 docs/PROMPTS.md (또는 cat $KIT/PROMPTS.md)"
+echo "지시문 모음: 왼쪽 docs/PROMPTS.md를 에디터로 열기"
